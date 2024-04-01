@@ -1,3 +1,4 @@
+from enum import unique
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -17,6 +18,8 @@ class User(AbstractUser):
             "users:detail", kwargs={"username": self.username}
         )
     
+class Tags(models.Model):
+    name = models.CharField(max_length=50, unique=True, help_text="Enter name for tag")
     
 class Image(models.Model):
     """Model representing a Image"""
@@ -32,12 +35,10 @@ class Image(models.Model):
         max_length=250,
         help_text="Enter image description."
     )
-    # tags= models.CharField(
-    #     max_length=500,
-    # )
+    tags= models.ManyToManyField(Tags, help_text="Choose tags for image")
 
-    img_link= models.CharField(
-        max_length=200,
+    img_id= models.CharField(
+        max_length=250,
     )
 
     def __str__(self):
@@ -63,6 +64,10 @@ class Album(models.Model):
         default='r',
         help_text="Display patterns",
     )
+
+    tags= models.ManyToManyField(Tags, help_text="select tags for image")
+
+#many to many to tags 
 
     def __str__(self):
         """String for representing the Model object."""
