@@ -291,5 +291,20 @@ SOCIALACCOUNT_ADAPTER = (
     "scannergallery.users.adapters.SocialAccountAdapter"
 )
 
-# Your stuff...
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '543984669021-lvgmg2h0f72p0u5at1u8icptfkt40v7q.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 # ------------------------------------------------------------------------------
