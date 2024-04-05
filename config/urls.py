@@ -20,6 +20,18 @@ urlpatterns = [
         "settings/",
         TemplateView.as_view(template_name="pages/settings.html"),
         name="settings",
+    ),path(
+        "gallery/",
+        TemplateView.as_view(template_name="pages/gallery.html"),
+        name="gallery",
+    ),path(
+        "auth/settings/",
+        TemplateView.as_view(template_name="pages/auth.html"),
+        name="auth",
+    ),path(
+        "auth/gallery/",
+        TemplateView.as_view(template_name="pages/auth.html"),
+        name="auth2",
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
