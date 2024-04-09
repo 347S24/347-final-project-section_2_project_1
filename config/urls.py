@@ -41,6 +41,9 @@ urlpatterns = [
         include("scannergallery.users.urls", namespace="users"),
     ),
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.socialaccount.urls')),
+    path("accounts/", include("allauth.urls")),
 
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
