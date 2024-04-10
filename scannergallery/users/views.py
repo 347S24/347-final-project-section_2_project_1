@@ -1,6 +1,9 @@
+from pyexpat import model
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from .models import Tags,Image,Album
+from django.views import generic
 from django.views.generic import (
     DetailView,
     RedirectView,
@@ -58,5 +61,30 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
             kwargs={"username": self.request.user.username},
         )
 
+class TagsDetailView(generic.DetailView):
+    model=Tags
+
+
+class TagsListView(generic.ListView):
+    model=Tags
+
+
+class ImageDetailView(generic.DetailView):
+    model=Image
+
+
+class ImageListView(generic.DetailView):
+    model=Image
+
+
+class AlbumListView(generic.ListView):
+    model=Album
+
+
+class AlbumDetailView(generic.DetailView):
+    model=Album
+
 
 user_redirect_view = UserRedirectView.as_view()
+
+
