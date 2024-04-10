@@ -20,6 +20,9 @@ class User(AbstractUser):
     
 class Tags(models.Model):
     name = models.CharField(max_length=50, unique=True, help_text="Enter name for tag")
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.name
     
 class Image(models.Model):
     """Model representing a Image"""

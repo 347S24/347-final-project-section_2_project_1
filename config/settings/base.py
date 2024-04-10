@@ -75,12 +75,22 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 
 LOCAL_APPS = [
     "scannergallery.users.apps.UsersConfig",
     # Your stuff: custom apps go here
 ]
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     "google": {
+#         "APP": {
+#             "client_id": "886390618069-kc0h9bhb6f2rflc0mq12eloncsq68t1n.apps.googleusercontent.com",
+#             "secret": "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",
+#         }
+#     }
+# }
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -104,6 +114,7 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "account_login"
+
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -142,6 +153,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
+    # "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
