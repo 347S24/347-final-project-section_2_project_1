@@ -26,6 +26,10 @@ urlpatterns = [
         TemplateView.as_view(template_name="pages/gallery.html"),
         name="gallery",
     ),path(
+        "uploadimg/",
+        TemplateView.as_view(template_name="pages/uploadimg.html"),
+        name="uploadimg",
+    ),path(
         "auth/settings/",
         TemplateView.as_view(template_name="pages/auth.html"),
         name="auth",
@@ -33,6 +37,10 @@ urlpatterns = [
         "auth/gallery/",
         TemplateView.as_view(template_name="pages/auth.html"),
         name="auth2",
+    ),path(
+        "auth/uploadimg/",
+        TemplateView.as_view(template_name="pages/auth.html"),
+        name="auth3",
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

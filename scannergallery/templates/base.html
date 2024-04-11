@@ -63,6 +63,9 @@
               <li class="nav-item {% if 'gallery' in request.path %}active{% endif %}">
                 <a class="nav-link" href="{% url 'gallery' %}">Gallery<span class="sr-only"></span></a>
               </li>
+              <li class="nav-item {% if 'upload' in request.path %}active{% endif %}">
+                <a class="nav-link" href="{% url 'uploadimg' %}">Upload Image<span class="sr-only"></span></a>
+              </li>
             {% else %}
               <li class="nav-item {% if request.path == '/accounts/signup/' %}active{% endif %}">
                 {# URL provided by django-allauth/account/urls.py #}
@@ -77,6 +80,9 @@
               </li>
               <li class="nav-item {% if '/gallery' in request.path %}active{% endif %}">
                 <a class="nav-link" href="{% url 'auth2' %}">Gallery<span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item {% if 'upload' in request.path %}active{% endif %}">
+                <a class="nav-link" href="{% url 'auth3' %}">Upload Image<span class="sr-only"></span></a>
               </li>
             {% endif %}
           </ul>
