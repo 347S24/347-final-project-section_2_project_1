@@ -73,7 +73,7 @@ class ImageDetailView(generic.DetailView):
     model=Image
 
 
-class ImageListView(generic.DetailView):
+class ImageListView(generic.ListView):
     model=Image
 
 
