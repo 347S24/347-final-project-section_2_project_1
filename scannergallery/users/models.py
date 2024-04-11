@@ -40,6 +40,8 @@ class Image(models.Model):
     )
     tags= models.ManyToManyField(Tags, help_text="Choose tags for image")
 
+    image_id=models.CharField(max_length=500, help_text="Image link here", default="1800suck me")
+
     def __str__(self):
         """String for representing the Model object."""
         return self.name
