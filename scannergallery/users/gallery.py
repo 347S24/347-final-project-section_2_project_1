@@ -22,3 +22,33 @@ if not creds or not creds.valid:
     # Save the credentials for the next run
     with open('_secrets_/token.json', 'w') as token:
         token.write(creds.to_json())
+
+from google.auth.transport.requests import AuthorizedSession
+authed_session = AuthorizedSession(creds)
+
+# read image from file
+with open("images/Baby_duck_in_diaper.jpg", "rb") as f:
+    image_contents = f.read()
+
+# upload photo and get upload token
+response = authed_session.post(
+    "https://photoslibrary.googleapis.com/v1/uploads", 
+    headers={},
+    data=image_contents)
+upload_token = response.text
+
+# use batch create to add photo and description
+response = authed_session.post(
+        'https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate', 
+        headers = { 'content-type': 'application/json' },
+        json={
+            "newMediaItems": [{
+                "description": "Test photo",
+                "simpleMediaItem": {
+                    "uploadToken": upload_token,
+                    "fileName": "test.jpg"
+                }
+            }]
+        }
+)
+print(response.text)
