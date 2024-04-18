@@ -91,6 +91,19 @@ LOCAL_APPS = [
 #         }
 #     }
 # }
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+            'https://www.googleapis.com/auth/photoslibrary',
+        ],
+        # 'AUTH_PARAMS': {
+        #     'access_type': 'online',
+        # },
+        # 'OAUTH_PKCE_ENABLED': True,
+    }
+}
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

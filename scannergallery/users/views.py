@@ -10,6 +10,8 @@ from django.views.generic import (
     UpdateView,
 )
 
+import requests
+
 User = get_user_model()
 
 
@@ -19,6 +21,8 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     #   Lookups by Username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    
 
 
 user_detail_view = UserDetailView.as_view()
