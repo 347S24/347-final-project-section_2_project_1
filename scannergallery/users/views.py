@@ -1,7 +1,8 @@
 from pyexpat import model
 from turtle import mode
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import *
+from django.views.generic.edit import *
 from django.urls import reverse, reverse_lazy
 from .models import Tags,Image,Album
 from django.views import generic
