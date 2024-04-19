@@ -5,6 +5,14 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+# looked at doc for pyhthon module search path https://docs.python.org/3/library/sys_path_init.html
+from scannergallery.users.views import ImageListView
+# import sys
+
+# print('\n\n\n\n\n\n\n')
+# print(sys.path)
+# print('\n\n\n\n\n\n\n')
+
 
 urlpatterns = [
     path(
@@ -21,10 +29,14 @@ urlpatterns = [
         "settings/",
         TemplateView.as_view(template_name="pages/settings.html"),
         name="settings",
+    # ),path(
+    #     "gallery/",
+    #     TemplateView.as_view(template_name="pages/gallery.html"),
+    #     name="gallery",
     ),path(
-        "gallery/",
-        TemplateView.as_view(template_name="pages/gallery.html"),
-        name="gallery",
+        "gallery",
+         ImageListView.as_view(),
+        name="gallery"
     ),path(
         "uploadimg/",
         TemplateView.as_view(template_name="pages/uploadimg.html"),

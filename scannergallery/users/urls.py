@@ -12,5 +12,5 @@ urlpatterns = [
     path("~redirect/", view=user_redirect_view, name="redirect"),
     path("~update/", view=user_update_view, name="update"),
     path("<str:username>/", view=user_detail_view, name="detail"),
-    path('gallery/', views.ImageListView.as_view(), name="Images"),
+    # path('images/', views.ImageListView.as_view(), name="Images"),
 ]
