@@ -1,7 +1,9 @@
 from pyexpat import model
+from turtle import mode
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.contrib.auth.mixins import *
+from django.views.generic.edit import *
+from django.urls import reverse, reverse_lazy
 from .models import Tags,Image,Album
 from django.views import generic
 from django.views.generic import (
@@ -9,6 +11,8 @@ from django.views.generic import (
     RedirectView,
     UpdateView,
 )
+
+import requests
 
 User = get_user_model()
 
@@ -19,6 +23,8 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     #   Lookups by Username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    
 
 
 user_detail_view = UserDetailView.as_view()
@@ -84,6 +90,28 @@ class AlbumListView(generic.ListView):
 class AlbumDetailView(generic.DetailView):
     model=Album
 
+
+class ImageCreate(PermissionRequiredMixin, CreateView):
+    model = Image
+    fields = ["name", "time_date", "description", "tags", "image_id"]
+    permission_required = 'catalog.add_image'
+
+class ImageUpdate(PermissionRequiredMixin, UpdateView):
+    model = Image
+    fields = "__all__"
+    permission_required = "catalog.change_image"
+
+class ImageDelete(PermissionRequiredMixin, DeleteView):
+    model = Image
+
+    def form_valid(self, form):
+        try:
+            self.object.delete()
+            return HttpResponseRedirect(self.success_url)
+        except Exception as e:
+            return HttpResponseRedirect(
+                reverse("author-delete", kwargs={"pk": self.object.pk})
+            )
 
 user_redirect_view = UserRedirectView.as_view()
 

@@ -3,8 +3,15 @@ import pandas as pd
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+import webbrowser
+scopes=['https://www.googleapis.com/auth/photoslibrary.appendonly']
+# url = "https://www.google.com"
 
-scopes=['https://www.googleapis.com/auth/photoslibrary.readonly']
+# chrome_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+
+# webbrowser.register("chrome", None, webbrowser.BackgroundBrowser(chrome_path))
+
+# webbrowser.get("chrome").open_new(url)
 
 creds = None
 
