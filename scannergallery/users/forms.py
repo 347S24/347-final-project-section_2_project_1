@@ -39,12 +39,3 @@ class UserCreationForm(forms.UserCreationForm):
             self.error_messages["duplicate_username"]
         )
 
-# class ImageCreationForm(forms.Form):
-#     name= forms.CharField(help_text="Name your image")
-#     time_date=forms.DateTimeField(help_text="")
-#     description=forms.CharField(help_text="Enter image description")
-#     tags=forms.ModelMultipleChoiceField(
-#         queryset=Tags.objects.all().order_by('name'),
-#         label="Tags",
-#         widget=forms.SelectMultiple
-#     )
