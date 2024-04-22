@@ -1,3 +1,4 @@
+from ast import Del
 from pyexpat import model
 from turtle import mode
 from django.contrib.auth import get_user_model
@@ -94,16 +95,14 @@ class AlbumDetailView(generic.DetailView):
 class ImageCreate(PermissionRequiredMixin, CreateView):
     model = Image
     fields = ["name", "time_date", "description", "tags", "image_id"]
-    permission_required = 'catalog.add_image'
 
 class ImageUpdate(PermissionRequiredMixin, UpdateView):
     model = Image
     fields = "__all__"
-    permission_required = "catalog.change_image"
 
 class ImageDelete(PermissionRequiredMixin, DeleteView):
     model = Image
-
+    success_url = reverse_lazy("uploadimg")
     def form_valid(self, form):
         try:
             self.object.delete()
@@ -112,6 +111,15 @@ class ImageDelete(PermissionRequiredMixin, DeleteView):
             return HttpResponseRedirect(
                 reverse("author-delete", kwargs={"pk": self.object.pk})
             )
+
+class TagCreate(PermissionRequiredMixin, CreateView):
+    model = Tags
+    fields = ["name"]
+
+class TagDelete(PermissionRequiredMixin, DeleteView):
+    model = Tags
+
+
 
 user_redirect_view = UserRedirectView.as_view()
 

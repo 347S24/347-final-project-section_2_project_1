@@ -3,7 +3,9 @@
 {% block title %}Upload New Image - scannerGallery{% endblock title %}
 
 {% block content %}
-<body>
-
-</body>
+<form method="post">
+    {% csrf token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
 {% endblock %}

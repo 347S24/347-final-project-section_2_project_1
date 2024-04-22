@@ -7,6 +7,7 @@ from django.views import defaults as default_views
 
 # looked at doc for pyhthon module search path https://docs.python.org/3/library/sys_path_init.html
 from scannergallery.users.views import ImageListView
+from scannergallery.users.views import ImageCreate
 # import sys
 
 # print('\n\n\n\n\n\n\n')
