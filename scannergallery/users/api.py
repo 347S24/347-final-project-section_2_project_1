@@ -50,7 +50,7 @@ def hello_upload(request):
     print(request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token)
     # request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token
     # read image from file
-    with open("/home/pinkstacs/347-final-project-section_2_project_1/scannergallery/users/Picture1.png", "rb") as f:
+    with open("/home/pinkstacs/347-final-project-section_2_project_1/scannergallery/users/images/Upload.png", "rb") as f:
         image_contents = f.read()
 
     # upload photo and get upload token
@@ -64,12 +64,12 @@ def hello_upload(request):
         headers = headers,
         json={
             "newMediaItems": [{
-                "description": "Test photo",
+                "description": "Upload button image",
                 "simpleMediaItem": {
                     "uploadToken": upload_token,
-                    "fileName": "test.jpg"
+                    "fileName": "Upload.png"
                 }
             }]
         }
     )
-    print(response.text)
+    return(response2.json())
