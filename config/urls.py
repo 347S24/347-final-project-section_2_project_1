@@ -7,7 +7,7 @@ from django.views import defaults as default_views
 
 # looked at doc for pyhthon module search path https://docs.python.org/3/library/sys_path_init.html
 from scannergallery.users.views import ImageListView
-from scannergallery.users.views import ImageCreate
+from scannergallery.users import views
 # import sys
 
 # print('\n\n\n\n\n\n\n')
@@ -38,10 +38,10 @@ urlpatterns = [
         "gallery",
          ImageListView.as_view(),
         name="gallery"
-    ),path(
-        "uploadimg/",
-        TemplateView.as_view(template_name="pages/uploadimg.html"),
-        name="uploadimg",
+    # ),path(
+    #     "uploadimg/",
+    #     TemplateView.as_view(template_name="pages/uploadimg.html"),
+    #     name="uploadimg",
     ),path(
         "auth/settings/",
         TemplateView.as_view(template_name="pages/auth.html"),
@@ -54,7 +54,8 @@ urlpatterns = [
         "auth/uploadimg/",
         TemplateView.as_view(template_name="pages/auth.html"),
         name="auth3",
-    ),
+    ),path("uploadimg/", views.imageCreate,
+            name="uploadimg"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
@@ -62,7 +63,7 @@ urlpatterns = [
         "users/",
         include("scannergallery.users.urls", namespace="users"),
     ),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('allauth.socialaccount.urls')),
     path("accounts/", include("allauth.urls")),
