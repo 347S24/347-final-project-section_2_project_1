@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 # looked at doc for pyhthon module search path https://docs.python.org/3/library/sys_path_init.html
-from scannergallery.users.views import ImageListView
+from scannergallery.users.views import ImageDetailView, ImageListView
 # import sys
 
 # print('\n\n\n\n\n\n\n')
@@ -37,6 +37,8 @@ urlpatterns = [
         "gallery",
          ImageListView.as_view(),
         name="gallery"
+    ),path(
+        'image/<int:pk>/', ImageDetailView.as_view(), name='image-detail'
     ),path(
         "uploadimg/",
         TemplateView.as_view(template_name="pages/uploadimg.html"),

@@ -1,0 +1,22 @@
+<!-- templates/users/image_detail.html -->
+{% extends "base.html" %}
+
+{% block title %}Image Detail - scannerGallery{% endblock title %}
+
+{% block content %}
+  <h1>Image: {{ image.name }}</h1>
+
+  <p><strong>Date/Time:</strong> {{ image.time_date }}</p>
+  <p><strong>Description:</strong> {{ image.description }}</p>
+  
+  <h4>Tags:</h4>
+  <ul>
+    {% for tag in image.tags.all %}
+      <li>{{ tag.name }}</li>
+    {% endfor %}
+  </ul>
+  
+  <img src="{{ image.image_id }}" alt="{{ image.name }}" style="max-width: 100%; height: auto;">
+
+  <!-- Additional details or information can be displayed here -->
+{% endblock %}

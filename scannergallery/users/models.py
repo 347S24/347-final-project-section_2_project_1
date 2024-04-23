@@ -45,6 +45,9 @@ class Image(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+    
+    def get_absolute_url(self):
+        return "/image/%i/" % self.id
 
 
 class Album(models.Model):
