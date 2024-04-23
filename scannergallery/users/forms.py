@@ -1,10 +1,13 @@
 from cProfile import label
 from tkinter import Widget
+from attr import fields
 from django.contrib.auth import get_user_model, forms
-# from django import forms
+from django import forms as dj_forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from .models import *
+from django.forms import widgets
+
 
 User = get_user_model()
 
@@ -39,12 +42,16 @@ class UserCreationForm(forms.UserCreationForm):
             self.error_messages["duplicate_username"]
         )
 
-# class ImageCreationForm(forms.Form):
-#     name= forms.CharField(help_text="Name your image")
-#     time_date=forms.DateTimeField(help_text="")
-#     description=forms.CharField(help_text="Enter image description")
-#     tags=forms.ModelMultipleChoiceField(
-#         queryset=Tags.objects.all().order_by('name'),
-#         label="Tags",
-#         widget=forms.SelectMultiple
-#     )
+class ImageCreateForm(dj_forms.ModelForm):
+    # name = dj_forms.CharField()
+    # time_date = dj_forms.DateTimeField()
+    # description = dj_forms.CharField()
+    # tags = dj_forms.ModelMultipleChoiceField(queryset=Tags.objects.all(), widget=dj_forms.CheckboxSelectMultiple)
+
+    class Meta:
+        model = Image
+        exclude=["image_id"]
+        widgets={'time_date':widgets.DateInput(attrs={'type': 'date'})} 
+
+
+

@@ -55,7 +55,8 @@ urlpatterns = [
         "auth/uploadimg/",
         TemplateView.as_view(template_name="pages/auth.html"),
         name="auth3",
-    ),
+    ),path("uploadimg/", views.imageCreate,
+            name="uploadimg"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
@@ -63,7 +64,7 @@ urlpatterns = [
         "users/",
         include("scannergallery.users.urls", namespace="users"),
     ),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('allauth.socialaccount.urls')),
     path("accounts/", include("allauth.urls")),
