@@ -43,10 +43,6 @@ urlpatterns = [
     ),path(
         'image/<int:pk>/', ImageDetailView.as_view(), name='image-detail'
     ),path(
-        "uploadimg/",
-        TemplateView.as_view(template_name="pages/uploadimg.html"),
-        name="uploadimg",
-    ),path(
         "auth/settings/",
         TemplateView.as_view(template_name="pages/auth.html"),
         name="auth",
