@@ -43,10 +43,10 @@ class UserCreationForm(forms.UserCreationForm):
         )
 
 class ImageCreateForm(dj_forms.ModelForm):
-    # name = dj_forms.CharField()
+    name = dj_forms.CharField()
     # time_date = dj_forms.DateTimeField()
-    # description = dj_forms.CharField()
-    # tags = dj_forms.ModelMultipleChoiceField(queryset=Tags.objects.all(), widget=dj_forms.CheckboxSelectMultiple)
+    description = dj_forms.CharField()
+    tags = dj_forms.ModelMultipleChoiceField(queryset=Tags.objects.all(), widget=dj_forms.CheckboxSelectMultiple)
 
     class Meta:
         model = Image
