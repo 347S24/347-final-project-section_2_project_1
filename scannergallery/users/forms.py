@@ -52,6 +52,7 @@ class ImageCreateForm(dj_forms.ModelForm):
         model = Image
         exclude=["image_id"]
         widgets={'time_date':widgets.DateInput(attrs={'type': 'date'})} 
+        # fields=['name', 'image_file']
 
 
 

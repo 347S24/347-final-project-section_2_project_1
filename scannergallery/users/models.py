@@ -32,16 +32,18 @@ class Image(models.Model):
         help_text="Enter a name for the image."
     )
     
-    time_date= models.DateField(auto_now=False, auto_now_add=False)
+    time_date= models.DateField(auto_now=False, auto_now_add=False, null=True)
 
     description= models.CharField(
         max_length=250,
-        help_text="Enter image description."
+        help_text="Enter image description.",
+        null=True
+
     )
     tags= models.ManyToManyField(Tags, help_text="Choose tags for image")
 
     image_id=models.CharField(max_length=500, help_text="Image link here", default="place holder")
-    image_file = models.ImageField(upload_to='image_uploads',null=True)
+    image_file = models.ImageField(upload_to='image_uploads', null=True)
 
     def __str__(self):
         """String for representing the Model object."""
