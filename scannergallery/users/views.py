@@ -17,6 +17,7 @@ from django.views.generic import (
 from .forms import ImageCreateForm
 from django.urls import reverse_lazy
 import requests
+import os
 
 User = get_user_model()
 
@@ -110,7 +111,47 @@ def imageCreate(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            form.save()
+            model = form.save()
+            list = os.listdir("/home/pinkstacs/347-final-project-section_2_project_1/scannergallery/media/image_uploads")
+            for l in list:
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token
+                }
+            
+                # request.user is the currently loggedin user
+                # print('request.user.socialaccount_set')
+                # print(request.user.socialaccount_set.all())
+                # print(request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token)
+                # request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token
+                # read image from file
+                img = "/home/pinkstacs/347-final-project-section_2_project_1/scannergallery/media/image_uploads/" + l
+                with open(img, "rb") as f:
+                    image_contents = f.read()
+
+                # upload photo and get upload token
+                response = requests.post(
+                    "https://photoslibrary.googleapis.com/v1/uploads", 
+                    headers=headers,
+                    data=image_contents)
+                upload_token = response.text
+                response2 = requests.post(
+                    'https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate', 
+                    headers = headers,
+                    json={
+                        "newMediaItems": [{
+                            "description": model.description,
+                            "simpleMediaItem": {
+                                "uploadToken": upload_token,
+                                "fileName": model.name + ".png"
+                            }
+                        }]
+                    }
+                )
+                img_id = response2.json()['newMediaItemResults'][0]['mediaItem']['id']
+                model.image_id = img_id
+                os.remove(img)
+                print(model.image_id)
             return HttpResponseRedirect("/gallery")
 
     # if a GET (or any other method) we'll create a blank form
