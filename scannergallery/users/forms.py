@@ -51,7 +51,7 @@ class ImageCreateForm(dj_forms.ModelForm):
 
     class Meta:
         model = Image
-        exclude=["image_id"]
+        exclude=["image_id", "image_url"]
         widgets={'time_date':widgets.DateInput(attrs={'type': 'date'})} 
         # fields=['name', 'image_file']
 

@@ -60,8 +60,8 @@
               <li class="nav-item {% if 'settings' in request.path %}active{% endif %}">
                 <a class="nav-link" href="{% url 'settings' %}">Settings <span class="sr-only"></span></a>
               </li>
-              <li class="nav-item {% if 'gallery' in request.path %}active{% endif %}">
-                <a class="nav-link" href="{% url 'gallery' %}">Gallery<span class="sr-only"></span></a>
+              <li class="nav-item {% if 'update_gallery' in request.path %}active{% endif %}">
+                <a class="nav-link" href="{% url 'update_gallery' %}">Gallery<span class="sr-only"></span></a>
               </li>
               <li class="nav-item {% if 'upload' in request.path %}active{% endif %}">
                 <a class="nav-link" href="{% url 'uploadimg' %}">Upload Image<span class="sr-only"></span></a>

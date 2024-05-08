@@ -42,7 +42,8 @@ class Image(models.Model):
     )
     tags= models.ManyToManyField(Tags, help_text="Choose tags for image")
 
-    image_id=models.CharField(max_length=500, help_text="Image link here", default="place holder")
+    image_id=models.CharField(max_length=500, help_text="Image id here", default="place holder")
+    image_url=models.CharField(max_length=2000, help_text="Image link here", default="place holder")
     image_file = models.ImageField(upload_to='image_uploads', null=True)
 
     def __str__(self):

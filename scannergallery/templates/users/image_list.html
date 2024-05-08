@@ -3,14 +3,13 @@
 {% block title %}Gallery - scannerGallery{% endblock title %}
 
 {% block content %}
-
 <h1>Image List</h1>
 {% if image_list %}
+  <span id = 'test'></span>
   <ul>
     {% for image in image_list %}
-
     <div class="card" style="width: 18rem;">
-        <img src="https://lh3.googleusercontent.com/lr/AAJ1LKcYVkZifgRonxKZOCSROqD2OcXjL2rdhB9utyT9eoLomT2LyDIjx_SWLuqIfDYSQ-MRC-OLeSVh6ROr7-DWCplDh_PMK6JwMNhw1R18rEfyZVTlMyTnqUMsCPbBnsUiaXXq89fYy7G8ihDxGdlkjH1zcMdrCjlMrWjDQMu4vtpyKVk7yjHW4p9KjohQewOYhwGgyT8f3zUsedhcnJ8CMrhFjhWEtYIx31hFVs3_etKAuTzjZqr9PNDXhQThSvkMNgIT-1U-pR8sSQxZH8yGCChn26PWaOHG4-q0H7J4faKeD9oYC9xxjK_ovw1t1HUNcIZfHX9hd9UGwWAmmBqky_1CcIwHty_YxNpiTB2tVdGLeoXf6XNftXVXQ18XHif6m4IwtG3VytBnomavJhY8jC2HPCMzC__UD9SVb-S2vXEggQkxyWwIlhbgaKKjOyUkHM1bNscEEGXxpW0yRA0355y06UFJhbmRdicUtuEssfnJWASlATGRSfV3crec8gh2bHKYyQoaSOn-zKfabB5X3NcKgiEWXab_EaileZtpLeBI7KaYHzA_fwvFNTqkhIRqKhAFhvT0raxSGhTpXfC3KzM8tJ7JZpnDcbxcDtLG-X34a64IA4uZXO-8FrxirsQ_7QnAEGrBitytod8a6a5ycuazLcdE8WJRAnZtAeo8735SBqU9eWsZNdflIJ28w2SRC346tKXmCrI-gb3yAhqOKoQunxgzwLEmp8XUxSAzlGnpVjfwdjuZlvX-5Em61rVM3t4kig91ZbdDhC9YV42-iNPi5dtNW2sL-jMv3wPII7GwLj1vOsf60q9-_22b0L45owpab9gpsY3nksZuZGTRdJ4GODeYnGe9oYfR1ZgOPcENCKRV9k5OCioiIDetAJvioFmzFHP2EmlsUM3dr8NssfC9despoJrVUU-hY0Hu2tUNCg858bV2R2ZRChnXfQSzDHaMAUvbrP42ma9fDq3X8no0H0l3XFKw7stHsuEK" class="card-img-top" id = "image" alt="Card image cap" >
+        <img src= {{ image.image_url }} class="card-img-top" id = "image" alt="Card image cap" >
         <div class="card-body">
           <h5 class="card-title">{{ image.name }}</h5>
           <p class="card-text">{{ image.description }}</p>

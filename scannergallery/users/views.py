@@ -100,7 +100,20 @@ class AlbumDetailView(generic.DetailView):
 #     model = Image
 #     fields = ["name", "time_date", "description", "tags", "image_id"]
 #     permission_required="user.add_image"
+def galleryRequest(request):
+    images = Image.objects.all()
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token
+    }
+    for img in images:
+        print(img.image_id)
+        r = requests.get('https://photoslibrary.googleapis.com/v1/mediaItems/' + img.image_id, headers=headers)
 
+        answer = r.json()['baseUrl']
+        img.image_url = answer
+        img.save()
+    return HttpResponseRedirect("/gallery")
 def imageCreate(request):
       # if this is a POST request we need to process the form data
     if request.method == "POST":
@@ -150,9 +163,11 @@ def imageCreate(request):
                 )
                 img_id = response2.json()['newMediaItemResults'][0]['mediaItem']['id']
                 model.image_id = img_id
+                #model.image_url = response2.json()['newMediaItemResults'][0]['mediaItem']['baseUrl']
                 os.remove(img)
                 print(model.image_id)
-            return HttpResponseRedirect("/gallery")
+                model.save()
+            return HttpResponseRedirect("/update_gallery")
 
     # if a GET (or any other method) we'll create a blank form
     else:

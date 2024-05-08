@@ -26,8 +26,8 @@ def hello(request):
     # request.user.socialaccount_set.all()[0].socialtoken_set.all()[0].token
 
 
-    r = requests.post('https://photoslibrary.googleapis.com/v1/mediaItems:search', headers=headers)
-    return r.json()
+    r = requests.get('https://photoslibrary.googleapis.com/v1/mediaItems/AEce5IZ54BA7v6uNwBTWHrhly-ih9-CJ2d-isksqSUNMqjQcP9tvz3v6HjUuFpOzEHl1wBRlpjwH3lzeWtgOjBhJXMpzsGtJfA', headers=headers)
+    return r.json()["baseUrl"]
 @api.get("/hello_upload")
 def hello_upload(request):
     #  const searchResponse =

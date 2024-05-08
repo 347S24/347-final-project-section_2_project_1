@@ -37,6 +37,10 @@ urlpatterns = [
     #     TemplateView.as_view(template_name="pages/gallery.html"),
     #     name="gallery",
     ),path(
+        "update_gallery",
+         views.galleryRequest,
+        name="update_gallery"
+    ),path(
         "gallery",
          ImageListView.as_view(),
         name="gallery"
