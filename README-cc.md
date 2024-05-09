@@ -133,4 +133,6 @@ dropdb --if-exists scannergallery
 dropuser --if-exists myuser
 ```
 
+We ran into some issues getting the droplet set up. As a result we were not able to have one key for Google OAuth and it only worked on Sarah's machine so in order to run the project you have to set up your own. Also, a person can remain signed in but lose permission to access google photos so the web page will crash if you try to load photos. The solution to this is to log out and log back in again. Users must log in with google because the site stores the photos on google photos.
+
 
